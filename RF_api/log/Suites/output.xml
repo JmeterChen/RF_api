@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20190529 21:52:45.082" generator="Robot 3.0.2 (Python 2.7.10 on darwin)">
+<suite source="/Users/wawa/Codemao/RF/RF_api/Suite02_Getfiles.robot" id="s1" name="Suite02 Getfiles">
+<kw type="setup" name="login_success" library="Wood_Resource">
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>${PID}</arg>
+</arguments>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>wood</arg>
+<arg>${test-host}</arg>
+<arg>verify=True</arg>
+</arguments>
+<msg timestamp="20190529 21:52:45.208" level="INFO">Creating Session using : alias=wood, url=https://test-api.codemao.cn, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" endtime="20190529 21:52:45.209" starttime="20190529 21:52:45.208"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>identity=${username}</arg>
+<arg>password=${password}</arg>
+<arg>pid=${pid}</arg>
+</arguments>
+<assign>
+<var>${login_data}</var>
+</assign>
+<msg timestamp="20190529 21:52:45.212" level="INFO">${login_data} = {u'identity': u'18682236985', u'password': u'123456', u'pid': u'n6kwoCSe'}</msg>
+<status status="PASS" endtime="20190529 21:52:45.213" starttime="20190529 21:52:45.209"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the</doc>
+<arguments>
+<arg>wood</arg>
+<arg>/tiger/accounts/login</arg>
+<arg>json=${login_data}</arg>
+</arguments>
+<assign>
+<var>${res}</var>
+</assign>
+<msg timestamp="20190529 21:52:46.830" level="INFO">Post Request using : alias=wood, uri=/tiger/accounts/login, data=&lt;empty&gt;, headers=None, files=None, allow_redirects=True </msg>
+<msg timestamp="20190529 21:52:46.830" level="INFO">${res} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20190529 21:52:46.830" starttime="20190529 21:52:45.213"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${res.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20190529 21:52:46.831" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20190529 21:52:46.831" starttime="20190529 21:52:46.830"></status>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<arguments>
+<arg>${res.json()}</arg>
+<arg>user_info</arg>
+</arguments>
+<status status="PASS" endtime="20190529 21:52:46.832" starttime="20190529 21:52:46.831"></status>
+</kw>
+<status status="PASS" endtime="20190529 21:52:46.832" starttime="20190529 21:52:45.207"></status>
+</kw>
+<test id="s1-t1" name="Get_files_list_py">
+<kw name="Create Num" library="function">
+<assign>
+<var>${num}</var>
+</assign>
+<msg timestamp="20190529 21:52:46.833" level="INFO">${num} = 9</msg>
+<status status="PASS" endtime="20190529 21:52:46.833" starttime="20190529 21:52:46.833"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${num}</arg>
+</arguments>
+<msg timestamp="20190529 21:52:46.834" level="INFO">9</msg>
+<status status="PASS" endtime="20190529 21:52:46.834" starttime="20190529 21:52:46.833"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>int(${num})</arg>
+</arguments>
+<assign>
+<var>${num}</var>
+</assign>
+<msg timestamp="20190529 21:52:46.835" level="INFO">${num} = 9</msg>
+<status status="PASS" endtime="20190529 21:52:46.835" starttime="20190529 21:52:46.834"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${num}</arg>
+</arguments>
+<msg timestamp="20190529 21:52:46.835" level="INFO">9</msg>
+<status status="PASS" endtime="20190529 21:52:46.835" starttime="20190529 21:52:46.835"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${num}</arg>
+</arguments>
+<msg timestamp="20190529 21:52:46.836" level="INFO">${num} = 9</msg>
+<status status="PASS" endtime="20190529 21:52:46.836" starttime="20190529 21:52:46.835"></status>
+</kw>
+<kw name="get_files">
+<arguments>
+<arg>1</arg>
+<arg>${EMPTY}</arg>
+<arg>${1}</arg>
+<arg>${1}</arg>
+<arg>${num}</arg>
+</arguments>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${num1}</arg>
+<arg>${num2}</arg>
+</arguments>
+<assign>
+<var>@{num_list}</var>
+</assign>
+<msg timestamp="20190529 21:52:46.837" level="INFO">@{num_list} = [ 1 |  ]</msg>
+<status status="PASS" endtime="20190529 21:52:46.837" starttime="20190529 21:52:46.837"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>language_type=${language_type}</arg>
+<arg>page=${page}</arg>
+<arg>limit=${limit}</arg>
+</arguments>
+<assign>
+<var>&amp;{params}</var>
+</assign>
+<msg timestamp="20190529 21:52:46.841" level="INFO">&amp;{params} = { language_type=1 | page=1 | limit=9 }</msg>
+<status status="PASS" endtime="20190529 21:52:46.841" starttime="20190529 21:52:46.838"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>wood</arg>
+<arg>/tiger/wood/user/works</arg>
+<arg>params=${params}</arg>
+</arguments>
+<assign>
+<var>${res}</var>
+</assign>
+<msg timestamp="20190529 21:52:47.800" level="INFO">Get Request using : alias=wood, uri=/tiger/wood/user/works, headers=None json=None</msg>
+<msg timestamp="20190529 21:52:47.800" level="INFO">${res} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20190529 21:52:47.800" starttime="20190529 21:52:46.841"></status>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<doc>Convert a string to a JSON object</doc>
+<arguments>
+<arg>${res.content}</arg>
+</arguments>
+<assign>
+<var>${jsondata}</var>
+</assign>
+<msg timestamp="20190529 21:52:47.801" level="INFO">To JSON using : content=[{"work_id":30001224,"name":"\xe5\x88\x86\xe5\xbd\xa2\xe6\xa8\xb1\xe8\x8a\xb1\xe6\xa0\x91-1","update_time":1558925588,"language_type":1},{"work_id":30000716,"name":"\xe6\x96\xb0\xe7\x9a\x84\xe4\xbd\x9c\xe5\x93\x81-166","update_time":1558925178,"language_type":1},{"work_id":30001599,"name":"\xe6\x96\xb0\xe7\x9a\x84\xe4\xbd\x9c\xe5\x93\x81-167","update_time":1558491334,"language_type":1},{"work_id":30000651,"name":"\xe6\x96\xb0\xe7\x9a\x84\xe4\xbd\x9c\xe5\x93\x81-16-1","update_time":1558403005,"language_type":1},{"work_id":21005602,"name":"\xe5\x88\x86\xe5\xbd\xa2\xe6\xa8\xb1\xe8\x8a\xb1\xe6\xa0\x91","update_time":1557892655,"language_type":1},{"work_id":1156072,"name":"7500","update_time":1557740267,"language_type":1},{"work_id":30000698,"name":"\xe6\x96\xb0\xe7\x9a\x84\xe4\xbd\x9c\xe5\x93\x81-165","update_time":1557740244,"language_type":1},{"work_id":21005621,"name":"P2","update_time":1556249769,"language_type":1},{"work_id":21005601,"name":"\xe5\xa4\xa7\xe9\xbb\x84\xe9\xb8\xa1-3","update_time":1556247841,"language_type":1}] </msg>
+<msg timestamp="20190529 21:52:47.801" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20190529 21:52:47.802" level="INFO">${jsondata} = [{u'language_type': 1, u'update_time': 1558925588, u'name': u'\u5206\u5f62\u6a31\u82b1\u6811-1', u'work_id': 30001224}, {u'language_type': 1, u'update_time': 1558925178, u'name': u'\u65b0\u7684\u4f5c\...</msg>
+<status status="PASS" endtime="20190529 21:52:47.802" starttime="20190529 21:52:47.800"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${res.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20190529 21:52:47.802" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20190529 21:52:47.803" starttime="20190529 21:52:47.802"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${jsondata[0]}</arg>
+</arguments>
+<msg timestamp="20190529 21:52:47.803" level="INFO">Length is 4</msg>
+<status status="PASS" endtime="20190529 21:52:47.803" starttime="20190529 21:52:47.803"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${jsondata}</arg>
+</arguments>
+<assign>
+<var>${files_list_len}</var>
+</assign>
+<msg timestamp="20190529 21:52:47.804" level="INFO">Length is 9</msg>
+<msg timestamp="20190529 21:52:47.804" level="INFO">${files_list_len} = 9</msg>
+<status status="PASS" endtime="20190529 21:52:47.804" starttime="20190529 21:52:47.803"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${files_list_len}</arg>
+<arg>${num}</arg>
+</arguments>
+<status status="PASS" endtime="20190529 21:52:47.805" starttime="20190529 21:52:47.804"></status>
+</kw>
+<kw type="for" name="${i} IN RANGE [ ${num} ]">
+<kw type="foritem" name="${i} = 0">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>str(${jsondata[${i}]["language_type"]})</arg>
+</arguments>
+<assign>
+<var>${file_language_type}</var>
+</assign>
+<msg timestamp="20190529 21:52:47.806" level="INFO">${file_language_type} = 1</msg>
+<status status="PASS" endtime="20190529 21:52:47.806" starttime="20190529 21:52:47.805"></status>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${num_list}</arg>
+<arg>${file_language_type}</arg>
+</arguments>
+<status status="PASS" endtime="20190529 21:52:47.807" starttime="20190529 21:52:47.806"></status>
+</kw>
+<status status="PASS" endtime="20190529 21:52:47.807" starttime="20190529 21:52:47.805"></status>
+</kw>
+<kw type="foritem" name="${i} = 1">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>str(${jsondata[${i}]["language_type"]})</arg>
+</arguments>
+<assign>
+<var>${file_language_type}</var>
+</assign>
+<msg timestamp="20190529 21:52:47.808" level="INFO">${file_language_type} = 1</msg>
+<status status="PASS" endtime="20190529 21:52:47.808" starttime="20190529 21:52:47.807"></status>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${num_list}</arg>
+<arg>${file_language_type}</arg>
+</arguments>
+<status status="PASS" endtime="20190529 21:52:47.808" starttime="20190529 21:52:47.808"></status>
+</kw>
+<status status="PASS" endtime="20190529 21:52:47.808" starttime="20190529 21:52:47.807"></status>
+</kw>
+<kw type="foritem" name="${i} = 2">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>str(${jsondata[${i}]["language_type"]})</arg>
+</arguments>
+<assign>
+<var>${file_language_type}</var>
+</assign>
+<msg timestamp="20190529 21:52:47.809" level="INFO">${file_language_type} = 1</msg>
+<status status="PASS" endtime="20190529 21:52:47.809" starttime="20190529 21:52:47.809"></status>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${num_list}</arg>
+<arg>${file_language_type}</arg>
+</arguments>
+<status status="PASS" endtime="20190529 21:52:47.810" starttime="20190529 21:52:47.809"></status>
+</kw>
+<status status="PASS" endtime="20190529 21:52:47.810" starttime="20190529 21:52:47.808"></status>
+</kw>
+<kw type="foritem" name="${i} = 3">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>str(${jsondata[${i}]["language_type"]})</arg>
+</arguments>
+<assign>
+<var>${file_language_type}</var>
+</assign>
+<msg timestamp="20190529 21:52:47.811" level="INFO">${file_language_type} = 1</msg>
+<status status="PASS" endtime="20190529 21:52:47.811" starttime="20190529 21:52:47.810"></status>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${num_list}</arg>
+<arg>${file_language_type}</arg>
+</arguments>
+<status status="PASS" endtime="20190529 21:52:47.811" starttime="20190529 21:52:47.811"></status>
+</kw>
+<status status="PASS" endtime="20190529 21:52:47.811" starttime="20190529 21:52:47.810"></status>
+</kw>
+<kw type="foritem" name="${i} = 4">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>str(${jsondata[${i}]["language_type"]})</arg>
+</arguments>
+<assign>
+<var>${file_language_type}</var>
+</assign>
+<msg timestamp="20190529 21:52:47.812" level="INFO">${file_language_type} = 1</msg>
+<status status="PASS" endtime="20190529 21:52:47.812" starttime="20190529 21:52:47.812"></status>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${num_list}</arg>
+<arg>${file_language_type}</arg>
+</arguments>
+<status status="PASS" endtime="20190529 21:52:47.813" starttime="20190529 21:52:47.812"></status>
+</kw>
+<status status="PASS" endtime="20190529 21:52:47.813" starttime="20190529 21:52:47.811"></status>
+</kw>
+<kw type="foritem" name="${i} = 5">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>str(${jsondata[${i}]["language_type"]})</arg>
+</arguments>
+<assign>
+<var>${file_language_type}</var>
+</assign>
+<msg timestamp="20190529 21:52:47.813" level="INFO">${file_language_type} = 1</msg>
+<status status="PASS" endtime="20190529 21:52:47.813" starttime="20190529 21:52:47.813"></status>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${num_list}</arg>
+<arg>${file_language_type}</arg>
+</arguments>
+<status status="PASS" endtime="20190529 21:52:47.814" starttime="20190529 21:52:47.814"></status>
+</kw>
+<status status="PASS" endtime="20190529 21:52:47.814" starttime="20190529 21:52:47.813"></status>
+</kw>
+<kw type="foritem" name="${i} = 6">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>str(${jsondata[${i}]["language_type"]})</arg>
+</arguments>
+<assign>
+<var>${file_language_type}</var>
+</assign>
+<msg timestamp="20190529 21:52:47.815" level="INFO">${file_language_type} = 1</msg>
+<status status="PASS" endtime="20190529 21:52:47.815" starttime="20190529 21:52:47.814"></status>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${num_list}</arg>
+<arg>${file_language_type}</arg>
+</arguments>
+<status status="PASS" endtime="20190529 21:52:47.815" starttime="20190529 21:52:47.815"></status>
+</kw>
+<status status="PASS" endtime="20190529 21:52:47.815" starttime="20190529 21:52:47.814"></status>
+</kw>
+<kw type="foritem" name="${i} = 7">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>str(${jsondata[${i}]["language_type"]})</arg>
+</arguments>
+<assign>
+<var>${file_language_type}</var>
+</assign>
+<msg timestamp="20190529 21:52:47.816" level="INFO">${file_language_type} = 1</msg>
+<status status="PASS" endtime="20190529 21:52:47.816" starttime="20190529 21:52:47.816"></status>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${num_list}</arg>
+<arg>${file_language_type}</arg>
+</arguments>
+<status status="PASS" endtime="20190529 21:52:47.816" starttime="20190529 21:52:47.816"></status>
+</kw>
+<status status="PASS" endtime="20190529 21:52:47.817" starttime="20190529 21:52:47.815"></status>
+</kw>
+<kw type="foritem" name="${i} = 8">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>str(${jsondata[${i}]["language_type"]})</arg>
+</arguments>
+<assign>
+<var>${file_language_type}</var>
+</assign>
+<msg timestamp="20190529 21:52:47.817" level="INFO">${file_language_type} = 1</msg>
+<status status="PASS" endtime="20190529 21:52:47.817" starttime="20190529 21:52:47.817"></status>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${num_list}</arg>
+<arg>${file_language_type}</arg>
+</arguments>
+<status status="PASS" endtime="20190529 21:52:47.818" starttime="20190529 21:52:47.817"></status>
+</kw>
+<status status="PASS" endtime="20190529 21:52:47.818" starttime="20190529 21:52:47.817"></status>
+</kw>
+<status status="PASS" endtime="20190529 21:52:47.818" starttime="20190529 21:52:47.805"></status>
+</kw>
+<status status="PASS" endtime="20190529 21:52:47.818" starttime="20190529 21:52:46.836"></status>
+</kw>
+<status status="PASS" endtime="20190529 21:52:47.818" critical="yes" starttime="20190529 21:52:46.832"></status>
+</test>
+<status status="PASS" endtime="20190529 21:52:47.819" starttime="20190529 21:52:45.085"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Suite02 Getfiles" pass="1">Suite02 Getfiles</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

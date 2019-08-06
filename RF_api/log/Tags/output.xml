@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20190520 21:23:25.891" generator="Robot 3.0.2 (Python 2.7.10 on darwin)">
+<suite source="/Users/wawa/Codemao/RF/RF_api/Suite_api01.robot" id="s1" name="Suite api01">
+<test id="s1-t1" name="Get Requests with Url Parameters">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>wood</arg>
+<arg>https://test-api.codemao.cn</arg>
+</arguments>
+<msg timestamp="20190520 21:23:26.023" level="INFO">Creating Session using : alias=wood, url=https://test-api.codemao.cn, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20190520 21:23:26.024" starttime="20190520 21:23:26.023"></status>
+</kw>
+<tags>
+<tag>get_with_Parameters</tag>
+</tags>
+<status status="PASS" endtime="20190520 21:23:26.024" critical="yes" starttime="20190520 21:23:26.022"></status>
+</test>
+<status status="PASS" endtime="20190520 21:23:26.025" starttime="20190520 21:23:25.894"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+<stat fail="0" pass="1">get_with_Parameters</stat>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Suite api01" pass="1">Suite api01</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
