@@ -1,7 +1,7 @@
 *** Variable ***
-${pro-host}                 https://api.codemao.cn
-${sta-host}                 https://backend-test.codemao.cn
-${test-host}                https://test-api.codemao.cn
+${pro-host}                 https://api.maocode.cn
+${sta-host}                 https://backend-test.maocode.cn
+${test-host}                https://test-api.maocode.cn
 
 # test_data
 ${username}                 18682236985
